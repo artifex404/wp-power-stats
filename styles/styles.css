@@ -1,0 +1,108 @@
+/* Table of Content
+==================================================
+	#Wordpres overwrites
+	#Page Styles */
+
+/* #Wordpres overwrites
+================================================== */
+
+.toplevel_page_wp-power-stats .postbox-container {
+    float: none;
+}
+
+.toplevel_page_wp-power-stats .postbox h3 {
+    cursor: default !important;
+}
+
+.toplevel_page_wp-power-stats .inside {
+    margin-bottom: 0;
+}
+
+.toplevel_page_wp-power-stats .postbox {
+    min-width: 230px;
+    height: 320px;
+}
+
+/* #Page Styles
+================================================== */
+
+.postbox.micro {
+    height: 149px;
+}
+
+.half .postbox {
+    min-width: inherit;
+}
+
+.last {
+    float: right !important;
+}
+
+.inside table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.inside table td {
+    width: 33%;
+}
+
+.inside.dense {
+    margin-top: 6px;
+}
+
+.inside.dense table td {
+    padding: 0;
+    margin: 0;
+}
+
+.inside table.triple td {
+    text-align: center;
+    font: 12px/12px Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;
+    color: #777;
+}
+
+.inside table.triple td.percent {
+    padding-top: 5px;
+    font: 18px/15px Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif;
+    color: #707070;
+}
+
+.inside table.triple span {
+    font-size: 10px;
+    margin-left: 2px;
+}
+
+
+table.summary td {
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+table.summary td.value {
+    text-align: right;
+    padding-right: 4px;
+}
+
+.inside table td.order {
+    text-align: left;
+    width: 25px;
+    line-height: 22px;
+}
+
+.inside table td.link {
+    text-align: left;
+    width: auto;
+}
+
+.toplevel_page_wp-power-stats .postbox.fit-height {
+    height: 100%;
+    min-height: 320px;
+}
+
+.fit-height {
+    height: 100%;
+    min-height: 320px;
+}
