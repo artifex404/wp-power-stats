@@ -3,11 +3,11 @@
 Plugin Name: Power Stats
 Plugin URI: http://www.websivu.com/wp-power-stats/
 Description: Clean & simple statistics for your wordpress site.
-Version: 1.3.4
+Version: 1.4
 Author: Igor Buyanov
 Text Domain: wp-power-stats
 Author URI: http://www.websivu.com
-License: A "Slug" license name e.g. GPL2
+License: GPL2
 */
 
 /*  Copyright 2013  IGOR BUYANOV  (email : info@websivu.com)
@@ -31,7 +31,7 @@ if (get_option('timezone_string')) {
 }
 
 	
-define('WP_POWER_STATS_VERSION', '1.3.4');
+define('WP_POWER_STATS_VERSION', '1.4');
 update_option('wp_power_stats_plugin_version', WP_POWER_STATS_VERSION);
 
 if (!defined('WP_POWER_STATS_PLUGIN_DIR')) define('WP_POWER_STATS_PLUGIN_DIR', untrailingslashit(dirname(__FILE__)));

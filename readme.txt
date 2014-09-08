@@ -1,14 +1,14 @@
 === WP Power Stats ===
 Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
-Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
+Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker, hits, live visit, today, yesterday
 Requires at least: 3.3
-Tested up to: 3.9
-Stable tag: 1.3.4
+Tested up to: 4.0
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Clean & simple statistics for your wordpress site.
+Clean & simple visitor statistics for your WordPress site.
 
 == Description ==
 
@@ -22,7 +22,7 @@ A very lightweight, fast and secure plugin.
 
 This plugin does not use any 3rd party services: All statistical information collected with this plugin will be stored on your server and only you will have access to it.
 
-Statistics features:
+== Features ==
 
 * Page views
 * Devices
@@ -34,7 +34,7 @@ Statistics features:
 * Viewed posts
 * Referers
 
-Available in different languages:
+== Languages ==
 
 * English
 * French
@@ -67,6 +67,10 @@ They are located in 'WP Power Stats' section under 'Settings' menu.
 2. WP Power Stats sample statistics.
 
 == Changelog ==
+
+= 1.3.5 =
+* WordPress 4.0 compatibility
+* Fixes GeoIP location tracking notice errors
 
 = 1.3.4 =
 * Fixes plugin compatibility with the same vendor packages
