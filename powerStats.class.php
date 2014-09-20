@@ -282,12 +282,16 @@ class PowerStats {
 	
 	protected function set_country() {
 		
-		if (!defined('GEOIP_COUNTRY_EDITION')) require_once WP_POWER_STATS_PLUGIN_DIR . '/vendor/geoip/geoip.inc';
-
-		$gi = geoip_open(WP_POWER_STATS_PLUGIN_DIR . '/vendor/geoip/GeoIP.dat', GEOIP_STANDARD);
-		$this->country = geoip_country_code_by_addr($gi, $this->get_ip());
-		
-		geoip_close($gi);
+		if (!function_exists('geoip_country_code_by_name') && !defined('GEOIP_COUNTRY_EDITION')) {
+			require_once(WP_POWER_STATS_PLUGIN_DIR . '/vendor/geoip/geoip.inc');
+			if (function_exists('geoip_open')) {
+				$gi = geoip_open(WP_POWER_STATS_PLUGIN_DIR . '/vendor/geoip/GeoIP.dat', GEOIP_STANDARD);
+				$this->country = geoip_country_code_by_addr($gi, $this->get_ip());
+				geoip_close($gi);
+			}
+		} else {
+			$this->country = geoip_country_code_by_name($this->get_ip());
+		}
 		
 	}
 	
