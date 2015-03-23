@@ -1,28 +1,28 @@
 === WP Power Stats ===
 Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
-Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker, hits, live visit, today, yesterday
+Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
-Tested up to: 4.0
-Stable tag: 1.4
+Tested up to: 4.2
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Clean & simple visitor statistics for your WordPress site.
+Powerful and accurate real-time statistics for your WordPress site.
 
 == Description ==
 
-Track your visitors: browsers, operatings systems, visitors and much more!
+View your site visit statistics in details: browsers, operating systems, visitors and much more!
 
-One click install: no need to write code or modify the site.
+One click install and you are ready to go! A lot of advanced settings to fine-tune the tracking.
 
-A very lightweight, fast and secure plugin.
+This lightweight plugin is fully integrated in WordPress, which makes it fast, secure and reliable.
 
 [View sample screenshots](http://wordpress.org/plugins/wp-power-stats/screenshots/)
 
-This plugin does not use any 3rd party services: All statistical information collected with this plugin will be stored on your server and only you will have access to it.
+Your privacy is important to us. All statistical information collected with this plugin will be stored on your server and only you will have access to it.
 
-== Features ==
+Statistics features:
 
 * Page views
 * Devices
@@ -32,9 +32,9 @@ This plugin does not use any 3rd party services: All statistical information col
 * Geographical location
 * Search terms
 * Viewed posts
-* Referers
+* Referrers
 
-== Languages ==
+Languages:
 
 * English
 * French
@@ -45,21 +45,25 @@ This plugin does not use any 3rd party services: All statistical information col
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+This section describes how to install the plugin and get it to work.
 
 1. Upload `wp-power-stats.zip` to the `/wp-content/plugins/` directory
 2. Unzip `wp-power-stats.zip` in the folder
-3. Activate the plugin through the 'Plugins' menu in Wordpress
+3. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 
 = The plugin does not work, what should I do? =
 
-Disable and then re-enable the plugin in the 'Plugins' menu in Wordpress.
+Disable and then re-enable the plugin in the 'Plugins' menu in WordPress.
 
 = Where are the settings for the plugin located? =
 
-They are located in 'WP Power Stats' section under 'Settings' menu.
+They are located under 'Statistics' section in the 'Settings' section.
+
+= When I test the plugin, the pageview number increments by 2, is it a bug? =
+
+If you test the plugin by loading the blog, make sure that you have the setting 'Administration Exclusion' under the 'Exclusions' tab set to 'yes'. One hit is formed from the blog view, the other one from the administration panel hit if the setting is set to 'no'.
 
 == Screenshots ==
 
@@ -68,13 +72,14 @@ They are located in 'WP Power Stats' section under 'Settings' menu.
 
 == Changelog ==
 
-= 1.3.5 =
-* WordPress 4.0 compatibility
-* Fixes GeoIP location tracking notice errors
-
-= 1.3.4 =
-* Fixes plugin compatibility with the same vendor packages
-* Fixes long text layout bug: referers, post names and search terms
+= 2.0 =
+* Massive under-the-hood performance enhancements
+* Numerous new settings for the tracking: exclusions, permissions and advanced settings
+* You can now replace your dashboard with WP Power Stats overview
+* Improved statistics detection: Search Engines, Countries, Mobile Devices and Browsers
+* Moved Settings to the Statistics menu
+* Fixes activation error on some hosts
+* Fixes breaking Wordpress layout on some installations
 
 = 1.3.3 =
 * Fixes IP exclusion bug
@@ -87,14 +92,14 @@ They are located in 'WP Power Stats' section under 'Settings' menu.
 * Fixes a bug when saving options. Thank you 'myplugins', 'michaldunaj' and 'davegiannini' for reporting
 
 = 1.3 =
-* New feature: You can now exclude IP addresses from statistics
-* New feature: Added total count of pageviews and visits to the widget
-* Improvement: Rearranged and renamed settings menus
+* You can now exclude IP addresses from statistics
+* Added total count of pageviews and visits to the widget
+* Rearranged and renamed settings menus
 
 = 1.2 =
-* New feature: Added a setting to select roles that can view statistics
-* New feature: Added a setting to select roles that can change statistics settings
-* Updated: Mobile device detection
+* Added a setting to select roles that can view statistics
+* Added a setting to select roles that can change statistics settings
+* Updated mobile device detection
 * Added French language (Olivier)
 * Added Spanish language (Luciano)
 
@@ -105,10 +110,10 @@ They are located in 'WP Power Stats' section under 'Settings' menu.
 * Fixes top posts permalink empty link
 
 = 1.1 =
-* New feature: added a statistic widget
-* New feature: added a setting page
-* New feature: added a setting to exclude hits from administrators and bots
-* Improvement: added support for Wordpress starting from version 3.3
+* Added a statistic widget
+* Added a setting page
+* Added a setting to exclude hits from administrators and bots
+* Added support for Wordpress starting from version 3.3
 * Fixes Wordpress multisite plugin installation
 * Fixes overview layout bug
 

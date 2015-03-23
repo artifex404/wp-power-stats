@@ -5,7 +5,6 @@
     #Clearing */
 
 
-
 /* #Base Grid
 ================================================== */
 
@@ -23,10 +22,8 @@
     .half.last .cell { padding-right: 0; padding-left: 8px; }
 
     .container .half.column { width: 50%; }
-    .container .one-third.column { width: 34%; }
-    .container .two-thirds.column { width: 66%; }
-
-
+    .container .one-third.column { width: 38%; }
+    .container .two-thirds.column { width: 62%; }
 
 
 /*  #Mobile
@@ -45,7 +42,6 @@
         .container .two-thirds.column  { width: 100%; margin-bottom: 0;}
 
     }
-
 
 
 /* #Clearing

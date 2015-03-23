@@ -5,8 +5,6 @@
  * @link http://piwik.org
  * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
  *
- * @category Piwik
- * @package DataFiles
  */
 
 /**
@@ -87,6 +85,9 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
 
         // Acoon
         'www.acoon.de'                   => array('Acoon', 'begriff', 'cgi-bin/search.exe?begriff={k}'),
+
+        // Aguea
+        'chercherfr.aguea.com'           => array('Aguea', 'q', 's.py?q={k}'),
 
         // Alexa
         'alexa.com'                      => array('Alexa', 'q', 'search?q={k}'),
@@ -185,15 +186,19 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
         '{}.search.ask.com'              => array('Ask'),
         'avira-int.ask.com'              => array('Ask'),
         'searchqu.com'                   => array('Ask'),
+        'search.tb.ask.com'              => array('Ask'),
 
         // Atlas
         'searchatlas.centrum.cz'         => array('Atlas', 'q', '?q={k}'),
+
+        // auone
+        'search.auone.jp'                => array('auone', 'q', '?q={k}'),
 
         // Austronaut
         'www2.austronaut.at'             => array('Austronaut', 'q'),
         'www1.austronaut.at'             => array('Austronaut'),
 
-        // Babylon (Enhanced by Google)
+        // Babylon (Enhanced by Google),
         'search.babylon.com'             => array('Babylon', array('q', '/\/web\/(.*)/'), '?q={k}'),
         'searchassist.babylon.com'       => array('Babylon'),
 
@@ -207,6 +212,7 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
 
         // Biglobe
         'cgi.search.biglobe.ne.jp'       => array('Biglobe', 'q', 'cgi-bin/search-st?q={k}'),
+        'images.search.biglobe.ne.jp'    => array('Biglobe Images', 'q', 'cgi-bin/search-st?q={k}'),
 
         // Bing
         'bing.com'                       => array('Bing', array('q', 'Q'), 'search?q={k}'),
@@ -442,6 +448,7 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
         '{}.wow.com'                     => array('Google'),
         'search.leonardo.it'             => array('Google'),
         'www.optuszoo.com.au'            => array('Google'),
+        'search.dolphin-browser.jp'      => array('Google'),
         'search.smt.docomo.ne.jp'        => array('Google', 'MT'),
         'image.search.smt.docomo.ne.jp'     => array('Google', 'MT'),
 
@@ -498,7 +505,7 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
 
         // Google Wireless Transcoder
         // - does not appear to execute JavaScript
-//		'google.com/gwt/n'			=> array('Google Wireless Transcoder'),
+        //'google.com/gwt/n'			=> array('Google Wireless Transcoder'),
 
         // Goyellow.de
         'www.goyellow.de'                => array('GoYellow.de', 'MDN'),
@@ -619,6 +626,9 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
         'www.toile.com'                  => array('La Toile Du Québec (Google)', 'q', 'search?q={k}'),
         'web.toile.com'                  => array('La Toile Du Québec (Google)'),
 
+        // LookAny
+        'www.lookany.com'                => array('LookAny', '/(?:search|images|videos)\/([^\/]+)/'),
+
         // Looksmart
         'www.looksmart.com'              => array('Looksmart', 'key'),
 
@@ -701,7 +711,8 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
         'www.neti.ee'                    => array('Neti', 'query', 'cgi-bin/otsing?query={k}', 'iso-8859-1'),
 
         // Nifty
-        'search.nifty.com'               => array('Nifty', 'q', 'websearch/search?q={k}'),
+        'search.nifty.com'               => array('Nifty', array('q', 'Text'), 'websearch/search?q={k}'),
+        'videosearch.nifty.com'          => array('Nifty Videos', 'kw', 'search?kw={k}'),
 
         // Nigma
         'nigma.ru'                       => array('Nigma', 's', 'index.php?s={k}'),
@@ -804,6 +815,13 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
 
         // Snap.do
         'search.snap.do'                 => array('Snap.do', 'q', '?q={k}'),
+
+        // SeeSaa
+        'search.seesaa.jp'               => array('SeeSaa', '/\/([^\/]+)\/index\.html/', '{k}/index.html'),
+
+        // So-net
+        'www.so-net.ne.jp'               => array('So-net', 'query', 'search/web/?query={k}'),
+        'video.so-net.ne.jp'             => array('So-net Videos', 'kw', 'search/?kw={k}'),
 
         // Sogou
         'www.sogou.com'                  => array('Sogou', 'query', 'web?query={k}', 'gb2312'),
@@ -939,15 +957,25 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
         // Wirtualna Polska
         'szukaj.wp.pl'                   => array('Wirtualna Polska', 'szukaj', 'http://szukaj.wp.pl/szukaj.html?szukaj={k}'),
 
+        // Woopie
+        'www.woopie.jp'                  => array('Woopie', 'kw', 'search?kw={k}'),
+
         // WWW
         'search.www.ee'                  => array('www värav', 'query'),
 
         // X-recherche
         'www.x-recherche.com'            => array('X-Recherche', 'MOTS', 'cgi-bin/websearch?MOTS={k}'),
 
+        // Yahoo! Japan
+        'search.yahoo.co.jp'             => array('Yahoo! Japan', 'p', 'search?p={k}'),
+        'jp.hao123.com'                  => array('Yahoo! Japan', 'query'),
+        'video.search.yahoo.co.jp'       => array('Yahoo! Japan Videos', 'p', 'search?p={k}'),
+        'image.search.yahoo.co.jp'       => array('Yahoo! Japan Images', 'p', 'search?p={k}'),
+
+
         // Yahoo
         'search.yahoo.com'               => array('Yahoo!', array('p', 'q'), 'search?p={k}'),
-//		'*.search.yahoo.com'		=> array('Yahoo!'), // see built-in helper in Common.php
+        //'*.search.yahoo.com'		=> array('Yahoo!'), // see built-in helper in Common.php
         'yahoo.com'                      => array('Yahoo!'),
         'yahoo.{}'                       => array('Yahoo!'),
         '{}.yahoo.com'                   => array('Yahoo!'),
@@ -955,8 +983,6 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
         'espanol.yahoo.com'              => array('Yahoo!'),
         'qc.yahoo.com'                   => array('Yahoo!'),
         'one.cn.yahoo.com'               => array('Yahoo!'),
-        'video.search.yahoo.co.jp'       => array('Yahoo!'),
-        'image.search.yahoo.co.jp'       => array('Yahoo!'),
 
         // Powered by Yahoo APIs
         'www.cercato.it'                 => array('Yahoo!', 'q'),
@@ -968,11 +994,11 @@ if (!isset($GLOBALS['PowerStats_SearchEngines'])) {
 
         // Yahoo! Directory
         'search.yahoo.com/search/dir'    => array('Yahoo! Directory', 'p', '?p={k}'),
-//		'{}.dir.yahoo.com'			=> array('Yahoo! Directory'),
+        //'{}.dir.yahoo.com'			=> array('Yahoo! Directory'),
 
         // Yahoo! Images
         'images.search.yahoo.com'        => array('Yahoo! Images', 'p', 'search/images?p={k}'),
-//		'*.images.search.yahoo.com'=> array('Yahoo! Images'), // see built-in helper in Common.php
+        //'*.images.search.yahoo.com'=> array('Yahoo! Images'), // see built-in helper in Common.php
         '{}.images.yahoo.com'            => array('Yahoo! Images'),
         'cade.images.yahoo.com'          => array('Yahoo! Images'),
         'espanol.images.yahoo.com'       => array('Yahoo! Images'),
