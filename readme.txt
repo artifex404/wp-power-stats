@@ -4,7 +4,7 @@ Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
 Tested up to: 4.2
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,12 +65,22 @@ They are located under 'Statistics' section in the 'Settings' section.
 
 If you test the plugin by loading the blog, make sure that you have the setting 'Administration Exclusion' under the 'Exclusions' tab set to 'yes'. One hit is formed from the blog view, the other one from the administration panel hit if the setting is set to 'no'.
 
+= Why the sudden drop of visitors number when I upgraded to version 2.0?
+
+The version 2.0 uses a completely new method to detect only real human visitors.
+
 == Screenshots ==
 
 1. Responsive design screenshots and some features listed.
 2. WP Power Stats sample statistics.
+2. Settings page.
 
 == Changelog ==
+
+= 2.0.1 =
+* Fixes UTC date bug
+* Fixes bug in saving options
+* Updated search engine definition list
 
 = 2.0 =
 * Massive under-the-hood performance enhancements

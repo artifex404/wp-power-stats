@@ -39,7 +39,7 @@ class PowerStatsAdmin
         add_filter('wpmu_drop_tables', array(__CLASS__, 'drop_tables'), 10, 2);
 
         // Display a notice if conditions are met
-        if (!empty($_GET['page']) && strpos($_GET['page'], 'wp-power-stats') !== false && !empty(self::$admin_notice) && PowerStats::$options['show_admin_notice'] != PowerStats::$version && get_option('power_stats_internal', 0) >= 200) {
+        if (!empty($_GET['page']) && strpos($_GET['page'], 'wp-power-stats') !== false && !empty(self::$admin_notice) && PowerStats::$options['show_admin_notice'] != PowerStats::$version && get_option('power_stats_internal', 0) > 199) {
             add_action('admin_notices', array(__CLASS__, 'show_admin_notice'));
         }
 

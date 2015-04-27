@@ -75,7 +75,7 @@ switch ($config_tabs[$current_tab - 1]) {
         if (isset($_POST['options'])) {
             if (!empty($_POST['options']['view_roles'])) {
                 // Make sure all the entered roles exist
-                $role_array = PowerStats::string_to_array($_POST['options']['view_roles']);
+                $role_array = PowerStats::string_to_array(strtolower($_POST['options']['view_roles']));
                 $role_not_found = false;
                 foreach ($role_array as $index => $role) {
                     // get the role object
@@ -109,7 +109,7 @@ switch ($config_tabs[$current_tab - 1]) {
             }
             if (!empty($_POST['options']['admin_roles'])) {
                 // Make sure all the entered roles exist
-                $role_array = PowerStats::string_to_array($_POST['options']['admin_roles']);
+                $role_array = PowerStats::string_to_array(strtolower($_POST['options']['admin_roles']));
                 $role_not_found = false;
                 foreach ($role_array as $index => $role) {
                     // get the role object

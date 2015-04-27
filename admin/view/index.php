@@ -1,11 +1,10 @@
 <?php
 
 $week_start = get_option('start_of_week'); // Get Wordpress option
-$now = current_time('mysql', 1); // in UTC
+$now = current_time('mysql');
 $week_mode = ($week_start == 1) ? 1 : 0;
 
 $wpdb = $GLOBALS['wpdb'];
-
 
 function get_delta_visits($delta) {
 
@@ -25,7 +24,6 @@ function get_delta_visits($delta) {
 
     echo '<td class="versus-last '.$class.'"><span>'. $image .' '. $percent .'<span>%</span></span></td>';
 }
-
 
 $today_visits = $wpdb->get_row("SELECT COUNT(id) FROM `{$wpdb->prefix}power_stats_visits` WHERE DATE(`date`) = DATE('". $now ."')", ARRAY_N);
 $this_week_visits = $wpdb->get_row("SELECT COUNT(id) FROM `{$wpdb->prefix}power_stats_visits` WHERE WEEK(`date`, $week_mode) = WEEK('". $now ."', $week_mode)", ARRAY_N);
