@@ -49,7 +49,7 @@ class PowerStatsWidget extends WP_Widget {
         $this_week_pageviews = $wpdb->get_row("SELECT SUM(`hits`) FROM `{$wpdb->prefix}power_stats_pageviews` WHERE WEEK(`date`, $week_mode) = WEEK('". $now ."', $week_mode)", ARRAY_N);
         $this_month_pageviews = $wpdb->get_row("SELECT SUM(`hits`) FROM `{$wpdb->prefix}power_stats_pageviews` WHERE MONTH(`date`) = MONTH('". $now ."')", ARRAY_N);
 
-        $table = '<style>table.wp-power-stats-widget {border: 0;} table.wp-power-stats-widget td {border: 0;padding-bottom: 4px;} table.wp-power-stats-widget td.visits div {margin: auto; width: 16px; height: 16px; background: url(\''.plugin_dir_url(__FILE__).'/images/widget-icons.png\') 16px 0;} table.wp-power-stats-widget td.pageviews div {margin: auto; width: 16px; height: 16px; background: url(\''.plugin_dir_url(__FILE__).'/images/widget-icons.png\');} table.wp-power-stats-widget td.value {text-align: center;}</style>
+        $table = '<style>table.wp-power-stats-widget {border: 0;} table.wp-power-stats-widget td {border: 0;padding-bottom: 4px;} table.wp-power-stats-widget td.visits div {margin: auto; width: 16px; height: 16px; background: url('.plugin_dir_url(__FILE__).'/admin/images/widget-icons.png) 16px 0;} table.wp-power-stats-widget td.pageviews div {margin: auto; width: 16px; height: 16px; background: url('.plugin_dir_url(__FILE__).'/admin/images/widget-icons.png);} table.wp-power-stats-widget td.value {text-align: center;}</style>
         <table class="wp-power-stats-widget">';
 
         if ($show_images) $table .='

@@ -3,24 +3,24 @@ Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
-Tested up to: 4.2
-Stable tag: 2.0.1
+Tested up to: 4.3
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Powerful and accurate real-time statistics for your WordPress site.
+Powerful and accurate real-time visitor statistics of your WordPress site.
 
 == Description ==
 
-View your site visit statistics in details: browsers, operating systems, visitors and much more!
+View your site visits statistics at a glance: browsers, operating systems, visitors and much more!
 
 One click install and you are ready to go! A lot of advanced settings to fine-tune the tracking.
 
-This lightweight plugin is fully integrated in WordPress, which makes it fast, secure and reliable.
+This lightweight plugin is deeply integrated in WordPress, which makes it fast, secure and reliable.
 
 [View sample screenshots](http://wordpress.org/plugins/wp-power-stats/screenshots/)
 
-Your privacy is important to us. All statistical information collected with this plugin will be stored on your server and only you will have access to it.
+Claim back your privacy: no third party services, all statistics are private on your hosting and are accessible only by you.
 
 Statistics features:
 
@@ -56,6 +56,7 @@ This section describes how to install the plugin and get it to work.
 = The plugin does not work, what should I do? =
 
 Disable and then re-enable the plugin in the 'Plugins' menu in WordPress.
+If that does not help, try disabling other installed plugins, to exclude the possibility of a plugin conflict.
 
 = Where are the settings for the plugin located? =
 
@@ -76,6 +77,10 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 2. Settings page.
 
 == Changelog ==
+
+= 2.1 =
+* Respect visitors privacy by adding Do Not Track visitor setting support
+* Fixes the wrong url to images in the widget
 
 = 2.0.1 =
 * Fixes UTC date bug

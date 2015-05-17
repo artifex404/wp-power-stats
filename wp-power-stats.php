@@ -235,6 +235,16 @@ class PowerStats
             return false;
         }
 
+        // Do not track header
+        if (isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) {
+            return false;
+        }
+
+        // Ignore prefetch requests
+        if ((isset($_SERVER['HTTP_X_MOZ']) && (strtolower($_SERVER['HTTP_X_MOZ']) == 'prefetch')) || (isset($_SERVER["HTTP_X_PURPOSE"]) && (strtolower($_SERVER['HTTP_X_PURPOSE']) == 'preview'))) {
+            return false;
+        }
+
         // Get client's language
         self::$data['language'] = self::get_language();
 
@@ -317,11 +327,6 @@ class PowerStats
                     return false;
                 }
             }
-        }
-
-        // Ignore prefetch requests
-        if ((isset($_SERVER['HTTP_X_MOZ']) && (strtolower($_SERVER['HTTP_X_MOZ']) == 'prefetch')) || (isset($_SERVER["HTTP_X_PURPOSE"]) && (strtolower($_SERVER['HTTP_X_PURPOSE']) == 'preview'))) {
-            return false;
         }
 
         // Assign a visit id if set in the cookies
