@@ -3,7 +3,7 @@
 Plugin Name: WP Power Stats
 Plugin URI: http://www.websivu.com/wp-power-stats/
 Description: Powerful real-time statistics of your visitors for your WordPress site.
-Version: 2.1
+Version: 2.1.2
 Author: Igor Buyanov
 Text Domain: power-stats
 Author URI: http://www.websivu.com
@@ -14,13 +14,15 @@ if (!empty(PowerStats::$options)) return true;
 
 class PowerStats
 {
-    public static $version = '2.1';
+    public static $version = '2.1.2';
     public static $options = array();
     public static $wpdb = '';
     protected static $options_hash = '';
     protected static $data = array();
     protected static $data_js = array();
     protected static $vendors = array();
+
+	const HTML_ENCODING_QUOTE_STYLE = ENT_QUOTES;
 
     /**
      * Initialize variables and actions
@@ -59,7 +61,7 @@ class PowerStats
         if (!class_exists('Mobile_Detect')) require_once POWER_STATS_DIR . '/admin/vendor/mobile-detect/Mobile_Detect.php';
         require_once POWER_STATS_DIR . '/admin/vendor/search-terms/SearchEngines.php';
         require_once POWER_STATS_DIR . '/admin/vendor/search-terms/Countries.php';
-        require_once POWER_STATS_DIR . '/admin/vendor/geoip/geoip.inc';
+        require_once POWER_STATS_DIR . '/admin/vendor/tabgeo_country_v4/tabgeo_country_v4.php';
 
         self::$vendors['browser'] = new Browser($_SERVER['HTTP_USER_AGENT']);
         self::$vendors['device'] = new Mobile_Detect();
@@ -621,9 +623,8 @@ class PowerStats
      */
     protected static function get_country()
     {
-        $gi = geoip_open(POWER_STATS_DIR . '/admin/vendor/geoip/GeoIP.dat', GEOIP_STANDARD);
-        $country = geoip_country_code_by_addr($gi, self::get_ip());
-        geoip_close($gi);
+        $ip = self::get_ip();
+        $country = tabgeo_country_v4($ip);
         return $country;
     }
 

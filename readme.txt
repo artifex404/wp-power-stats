@@ -4,19 +4,19 @@ Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
 Tested up to: 4.3
-Stable tag: 2.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Powerful and accurate real-time visitor statistics of your WordPress site.
+Discover your visitor in real-time, intuitively and with style.
 
 == Description ==
 
 View your site visits statistics at a glance: browsers, operating systems, visitors and much more!
 
-One click install and you are ready to go! A lot of advanced settings to fine-tune the tracking.
+Highly customizable settings to fine-tune the tracking. One click install and you are ready to go!
 
-This lightweight plugin is deeply integrated in WordPress, which makes it fast, secure and reliable.
+This lightweight plugin is carefully integrated in WordPress, which makes it fast, secure and reliable.
 
 [View sample screenshots](http://wordpress.org/plugins/wp-power-stats/screenshots/)
 
@@ -42,6 +42,8 @@ Languages:
 * Finnish
 * Hungarian
 * Russian
+* German
+* Portuguese
 
 == Installation ==
 
@@ -77,6 +79,14 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 2. Settings page.
 
 == Changelog ==
+
+= 2.1.2 =
+* Added portuguese translation
+* Added german translation
+* Changed GeoIP detection library for better performance
+
+= 2.1.1 =
+* Fixes a bug which prevented some visitors to be tracked
 
 = 2.1 =
 * Respect visitors privacy by adding Do Not Track visitor setting support
