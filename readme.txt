@@ -3,12 +3,12 @@ Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
-Tested up to: 4.3
-Stable tag: 2.1.2
+Tested up to: 4.4
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Discover your visitor in real-time, intuitively and with style.
+Discover your visitors in real-time, intuitively and with style.
 
 == Description ==
 
@@ -44,6 +44,7 @@ Languages:
 * Russian
 * German
 * Portuguese
+* Catalan
 
 == Installation ==
 
@@ -80,10 +81,21 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 
 == Changelog ==
 
+= 2.1.4 =
+* Adds a new Exclusion setting: Do Not Track Exclusion
+* Fixes a bug which prevented some visitors to be tracked
+* Fixes a bug which prevented to add user exclusion
+* Updated IP Geo location database
+
+= 2.1.3 =
+* Add a new dashboard widget
+* Add Catalan language
+* Menu link compatibility fix
+
 = 2.1.2 =
-* Added portuguese translation
-* Added german translation
-* Changed GeoIP detection library for better performance
+* Add portuguese translation
+* Add german translation
+* Change GeoIP detection library for better performance
 
 = 2.1.1 =
 * Fixes a bug which prevented some visitors to be tracked
@@ -118,38 +130,38 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 
 = 1.3 =
 * You can now exclude IP addresses from statistics
-* Added total count of pageviews and visits to the widget
+* Add total count of pageviews and visits to the widget
 * Rearranged and renamed settings menus
 
 = 1.2 =
-* Added a setting to select roles that can view statistics
-* Added a setting to select roles that can change statistics settings
+* Add a setting to select roles that can view statistics
+* Add a setting to select roles that can change statistics settings
 * Updated mobile device detection
-* Added French language (Olivier)
-* Added Spanish language (Luciano)
+* Add French language (Olivier)
+* Add Spanish language (Luciano)
 
 = 1.1.1 =
-* Added Hungarian language (Halas)
-* Added Finnish language
+* Add Hungarian language (Halas)
+* Add Finnish language
 * Updated mobile detection
 * Fixes top posts permalink empty link
 
 = 1.1 =
-* Added a statistic widget
-* Added a setting page
-* Added a setting to exclude hits from administrators and bots
-* Added support for Wordpress starting from version 3.3
+* Add a statistic widget
+* Add a setting page
+* Add a setting to exclude hits from administrators and bots
+* Add support for Wordpress starting from version 3.3
 * Fixes Wordpress multisite plugin installation
 * Fixes overview layout bug
 
 = 1.0.3 =
-* Added browser icons
-* Added Russian translation
+* Add browser icons
+* Add Russian translation
 * Fixes bugs with older PHP version
 * Fixes bug with keywords
 
 = 1.0.2 =
-* Added help tab
+* Add help tab
 * Enhanced responsive design
 * Removed deprecated functions
 

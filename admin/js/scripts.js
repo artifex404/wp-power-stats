@@ -1,13 +1,8 @@
-/**
- * Created by igor on 20/03/15.
- */
-
-
 (function($) {
 
-    $(document).ready(function() {
+    $(function() {
 
-        $('#power-stats-hide-admin-notice').click(function (e) {
+        $('#power-stats-hide-admin-notice').click(function(e) {
 
             e.preventDefault();
             $(this).parents('div.power-stats-notice').fadeOut();

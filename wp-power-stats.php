@@ -3,7 +3,7 @@
 Plugin Name: WP Power Stats
 Plugin URI: http://www.websivu.com/wp-power-stats/
 Description: Powerful real-time statistics of your visitors for your WordPress site.
-Version: 2.1.2
+Version: 2.1.4
 Author: Igor Buyanov
 Text Domain: power-stats
 Author URI: http://www.websivu.com
@@ -14,7 +14,7 @@ if (!empty(PowerStats::$options)) return true;
 
 class PowerStats
 {
-    public static $version = '2.1.2';
+    public static $version = '2.1.4';
     public static $options = array();
     public static $wpdb = '';
     protected static $options_hash = '';
@@ -99,6 +99,7 @@ class PowerStats
             'tracker_active' => 'yes',
             'track_users' => 'yes',
             'auto_purge' => 150,
+            'dashboard_widget' => 'no',
             'replace_dashboard' => 'no',
 
             // Exclusions
@@ -111,6 +112,7 @@ class PowerStats
             'ignore_referrer' => '',
             'ignore_user' => '',
             'ignore_pages' => '',
+            'ignore_do_not_track' => 'no',
 
             // Permissions
             'view_roles' => '',
@@ -238,7 +240,7 @@ class PowerStats
         }
 
         // Do not track header
-        if (isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) {
+        if (!empty(self::$options['ignore_do_not_track']) && isset($_SERVER['HTTP_DNT']) && $_SERVER['HTTP_DNT'] == 1) {
             return false;
         }
 
@@ -624,7 +626,7 @@ class PowerStats
     protected static function get_country()
     {
         $ip = self::get_ip();
-        $country = tabgeo_country_v4($ip);
+        $country = (!empty($ip)) ? tabgeo_country_v4($ip) : "";
         return $country;
     }
 
@@ -1178,6 +1180,16 @@ class PowerStats
         return strtolower($string);
     }
 
+    /**
+     * Show dashboard widget
+     */
+    public static function dashboard_widget() {
+        if (PowerStats::$options['dashboard_widget'] == "yes") {
+            require_once('dashboard-widget.php');
+            PowerStatsDashboardWidget::init();
+        }
+    }
+
 }
 
 /**
@@ -1186,6 +1198,13 @@ class PowerStats
 function power_stats_init_widget() {
     require_once('widget.php');
     register_widget('PowerStatsWidget');
+}
+
+/**
+ * Initialize dashboard widget
+ */
+function power_stats_init_dashboard_widget() {
+    add_action('wp_dashboard_setup', array('PowerStats', 'dashboard_widget'));
 }
 
 if (function_exists('add_action')) {
@@ -1212,5 +1231,6 @@ if (function_exists('add_action')) {
 
     add_action('plugins_loaded', array('PowerStats', 'init'), 10);
     add_action('widgets_init', 'power_stats_init_widget');
+    power_stats_init_dashboard_widget();
 
 }
