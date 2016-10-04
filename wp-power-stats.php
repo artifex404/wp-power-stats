@@ -3,7 +3,7 @@
 Plugin Name: WP Power Stats
 Plugin URI: http://www.websivu.com/wp-power-stats/
 Description: Powerful real-time statistics of your visitors for your WordPress site.
-Version: 2.1.4
+Version: 2.1.5
 Author: Igor Buyanov
 Text Domain: power-stats
 Author URI: http://www.websivu.com
@@ -14,7 +14,7 @@ if (!empty(PowerStats::$options)) return true;
 
 class PowerStats
 {
-    public static $version = '2.1.4';
+    public static $version = '2.1.5';
     public static $options = array();
     public static $wpdb = '';
     protected static $options_hash = '';
@@ -172,7 +172,7 @@ class PowerStats
 
         // Delete old entries
         $days_ago = strtotime(date_i18n('Y-m-d H:i:s')." -$purge_interval days");
-        self::$wpdb->query("DELETE FROM {$GLOBALS['wpdb']->prefix}power_stats_visits WHERE `date` < $days_ago");
+        self::$wpdb->query("DELETE FROM {$GLOBALS['wpdb']->prefix}power_stats_visits WHERE `date` < FROM_UNIXTIME($days_ago)");
 
         // Optimize table
         self::$wpdb->query("OPTIMIZE TABLE {$GLOBALS['wpdb']->prefix}power_stats_visits");

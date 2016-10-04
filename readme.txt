@@ -4,7 +4,7 @@ Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.1.4
+Stable tag: 2.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,11 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 2. Settings page.
 
 == Changelog ==
+
+= 2.1.5 =
+* Fixes a bug where statistics might have been reset
+* Updated IP Geo location database
+* Updated mobile device detection
 
 = 2.1.4 =
 * Adds a new Exclusion setting: Do Not Track Exclusion
