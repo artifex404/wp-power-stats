@@ -389,9 +389,11 @@ class PowerStatsAdmin
     {
         global $current_user;
         $current_role = reset($current_user->roles);
-        $role = get_role($current_role);
-        foreach ($role->capabilities as $key => $capability) {
-            return $key;
+        $role = get_role($current_role); // Returns null if no role found
+        if ($role) {
+            foreach ($role->capabilities as $key => $capability) {
+                return $key;
+            }
         }
     }
 

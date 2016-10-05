@@ -41,4 +41,3 @@ var PowerStats = {
 if (typeof PowerStatsParams.ajaxurl != "undefined") {
     if (typeof PowerStats == "object") PowerStats.track();
 }
-

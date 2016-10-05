@@ -4,7 +4,7 @@ Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,10 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 2. Settings page.
 
 == Changelog ==
+
+= 2.1.6 =
+* Fixes a critical bug which prevented the visitors to be tracked
+* Fixes a bug where user the admin page could throw an error if user role was not found
 
 = 2.1.5 =
 * Fixes a bug where statistics might have been reset
