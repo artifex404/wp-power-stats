@@ -3,8 +3,8 @@ Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
-Tested up to: 4.6
-Stable tag: 2.1.6
+Tested up to: 4.7
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,19 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 
 == Changelog ==
 
+= 2.2.1 =
+* Fixes traffic origin bug
+* Fixed internal bug which in some cases prevented visits to be recorded correctly
+* Improves mobile device detection with a fresh definition list
+* Improves GeoIP detection with a library update
+
+= 2.2.0 =
+* Adds a settings link for the plugin on the plugins page
+* Fixes errors during a cronjob run
+
+= 2.1.7 =
+* Fixes network wide plugin activation on already existing multisite network sites
+
 = 2.1.6 =
 * Fixes a critical bug which prevented the visitors to be tracked
 * Fixes a bug where user the admin page could throw an error if user role was not found
@@ -97,13 +110,13 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 * Updated IP Geo location database
 
 = 2.1.3 =
-* Add a new dashboard widget
-* Add Catalan language
+* Adds a new dashboard widget
+* Adds Catalan language
 * Menu link compatibility fix
 
 = 2.1.2 =
-* Add portuguese translation
-* Add german translation
+* Adds portuguese translation
+* Adds german translation
 * Change GeoIP detection library for better performance
 
 = 2.1.1 =
@@ -139,38 +152,38 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 
 = 1.3 =
 * You can now exclude IP addresses from statistics
-* Add total count of pageviews and visits to the widget
+* Adds a total count of pageviews and visits to the widget
 * Rearranged and renamed settings menus
 
 = 1.2 =
-* Add a setting to select roles that can view statistics
-* Add a setting to select roles that can change statistics settings
+* Adds a setting to select roles that can view statistics
+* Adds a setting to select roles that can change statistics settings
 * Updated mobile device detection
-* Add French language (Olivier)
-* Add Spanish language (Luciano)
+* Adds French language (Olivier)
+* Adds Spanish language (Luciano)
 
 = 1.1.1 =
-* Add Hungarian language (Halas)
-* Add Finnish language
+* Adds Hungarian language (Halas)
+* Adds Finnish language
 * Updated mobile detection
 * Fixes top posts permalink empty link
 
 = 1.1 =
-* Add a statistic widget
-* Add a setting page
-* Add a setting to exclude hits from administrators and bots
-* Add support for Wordpress starting from version 3.3
+* Adds a statistic widget
+* Adds a setting page
+* Adds a setting to exclude hits from administrators and bots
+* Adds support for Wordpress starting from version 3.3
 * Fixes Wordpress multisite plugin installation
 * Fixes overview layout bug
 
 = 1.0.3 =
-* Add browser icons
-* Add Russian translation
+* Adds browser icons
+* Adds Russian translation
 * Fixes bugs with older PHP version
 * Fixes bug with keywords
 
 = 1.0.2 =
-* Add help tab
+* Adds help tab
 * Enhanced responsive design
 * Removed deprecated functions
 

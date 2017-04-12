@@ -3,7 +3,7 @@
 Plugin Name: WP Power Stats
 Plugin URI: http://www.websivu.com/wp-power-stats/
 Description: Powerful real-time statistics of your visitors for your WordPress site.
-Version: 2.1.6
+Version: 2.2.1
 Author: Igor Buyanov
 Text Domain: power-stats
 Author URI: http://www.websivu.com
@@ -14,7 +14,7 @@ if (!empty(PowerStats::$options)) return true;
 
 class PowerStats
 {
-    public static $version = '2.1.6';
+    public static $version = '2.2.1';
     public static $options = array();
     public static $wpdb = '';
     protected static $options_hash = '';
@@ -63,7 +63,7 @@ class PowerStats
         require_once POWER_STATS_DIR . '/admin/vendor/search-terms/Countries.php';
         require_once POWER_STATS_DIR . '/admin/vendor/tabgeo_country_v4/tabgeo_country_v4.php';
 
-        self::$vendors['browser'] = new Browser($_SERVER['HTTP_USER_AGENT']);
+        if ( isset($_SERVER['HTTP_USER_AGENT']) && !empty($_SERVER['HTTP_USER_AGENT']) ) self::$vendors['browser'] = new Browser($_SERVER['HTTP_USER_AGENT']);
         self::$vendors['device'] = new Mobile_Detect();
 
         // Add the server and client-side tracker
@@ -92,7 +92,7 @@ class PowerStats
         $options = array(
             // Internal
             'version' => self::$version,
-            'secret' => get_option('power_stats_secret', md5(time())),
+            'secret' => wp_hash( uniqid( time(), true ) ),
             'show_admin_notice' => 1,
 
             // General
@@ -176,6 +176,8 @@ class PowerStats
 
         // Optimize table
         self::$wpdb->query("OPTIMIZE TABLE {$GLOBALS['wpdb']->prefix}power_stats_visits");
+
+	    exit; // Exit script after conjob run
     }
 
     /**
@@ -335,6 +337,18 @@ class PowerStats
 
         // Assign a visit id if set in the cookies
         self::insert_data();
+
+	    // Something went wrong during the insert
+	    if ( empty( self::$data[ 'id' ] ) ) {
+
+		    // Attempt to init the environment, probably the plugin has been just activated on a blog in a MU network
+		    include_once(POWER_STATS_DIR . '/admin/wp-power-stats-admin.php');
+		    PowerStatsAdmin::activate();
+
+		    // Let's try again
+		    self::insert_data();
+
+	    }
 
         // Check if this is a new visitor
         $cookie_filter = apply_filters('power_stats_set_visit_cookie', true);
@@ -497,7 +511,7 @@ class PowerStats
 
         }
 
-        if (!isset(self::$data['id']) || empty(self::$data['id'])) self::$data['id'] = substr(md5(rand()), 0, 7);
+	    if (!isset(self::$data['id']) || empty(self::$data['id'])) self::$data['id'] = 0;
     }
 
     /**
@@ -582,10 +596,13 @@ class PowerStats
         return (($matched && !empty($os)) ? $os : (($unknown_is_empty) ? '' : 'Unknown'));
     }
 
+	/**
+	 * Parse search engine data from the referer
+	 * @return array|false
+	 */
     protected static function get_search_engine_data() {
 
         return self::parse_search_engine(self::$data['referer']);
-
     }
 
     /**
@@ -634,8 +651,7 @@ class PowerStats
      * Extracts the accepted language from browser headers
      * @return mixed|string
      */
-    protected static function get_language()
-    {
+    protected static function get_language() {
         if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
             // Get the language before the first delimiter, comma is the delimiter in Safari
             preg_match("/([^,;]*)/", $_SERVER["HTTP_ACCEPT_LANGUAGE"], $array_languages);
@@ -649,33 +665,31 @@ class PowerStats
     /**
      * @return mixed|string
      */
-    protected static function get_referer()
-    {
+    protected static function get_referer() {
         return (!empty(self::$data_js['referer'])) ? self::$data_js['referer'] : self::$data['referer'] = $_SERVER['HTTP_REFERER'];
     }
 
     /**
      * @return mixed|string
      */
-    protected static function get_browser()
-    {
+    protected static function get_browser() {
         return self::$vendors["browser"]->getBrowser();
     }
 
     /**
      * Get the username of currently logged in user
      */
-    protected static function get_user()
-    {
+    protected static function get_user() {
         return (isset($GLOBALS['current_user']->data->user_login)) ? $GLOBALS['current_user']->data->user_login : "";
     }
 
+	/**
+	 * @return bool
+	 */
     protected static function is_search_engine() {
 
-        return (self::$data['search_engine']['name'] === false);
-
+        return (is_array(self::$data['search_engine']) && isset(self::$data['search_engine']['name']) && self::$data['search_engine']['name'] !== "");
     }
-
 
     /**
      * Extracts a keyword from a raw not encoded URL.
@@ -1225,6 +1239,7 @@ if (function_exists('add_action')) {
             add_action('wp_dashboard_setup', array('PowerStatsAdmin', 'replace_dashboard'));
             register_activation_hook(__FILE__, array('PowerStatsAdmin', 'activate'));
             register_deactivation_hook(__FILE__, array('PowerStatsAdmin', 'deactivate'));
+	        add_filter('plugin_action_links_'.plugin_basename(__FILE__), array('PowerStatsAdmin', 'add_action_link'));
         }
 
     }

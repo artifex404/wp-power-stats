@@ -89,11 +89,20 @@ class PowerStatsAdmin
     {
         $wpdb = apply_filters('power_stats_custom_wpdb', $GLOBALS['wpdb']);
 
+	    // --- Updates for version before 2.2.1 ---
+	    if ((isset(PowerStats::$options['version']) && version_compare(PowerStats::$options['version'], '2.2.1', '<'))) {
+
+		    // Add new options
+		    PowerStats::$options['secret'] = wp_hash( uniqid( time(), true ) );
+
+	    }
+	    // --- END: Updates for versions before 2.2.1 ---
+
         // --- Updates for versions before 2.1.3 ---
         if ((isset(PowerStats::$options['version']) && version_compare(PowerStats::$options['version'], '2.1.3', '<'))) {
 
             // Add new options
-            PowerStats::$options['dashboard_widget'] =  'no';
+            PowerStats::$options['dashboard_widget'] = 'no';
 
         }
         // --- END: Updates for versions before 2.1.3 and after 2.0 ---
@@ -205,6 +214,19 @@ class PowerStatsAdmin
 
         return true;
     }
+
+	/**
+	 * Add a link to the settings page on the plugins page
+	 */
+	public static function add_action_link( $links )
+    {
+		if (current_user_can('wp_power_stats_admin') || current_user_can('manage_options')) {
+			$new_links = '<a href="' . self::$config_url . '">' . __( 'Settings', 'wp-power-stats' ) . '</a>';
+			array_unshift( $links, $new_links );
+		}
+
+	    return $links;
+	}
 
     /**
      * Removes a capability from a role
@@ -350,7 +372,7 @@ class PowerStatsAdmin
     public static function new_blog($blog_id)
     {
         switch_to_blog($blog_id);
-        self::init_environment();
+        self::activate();
         restore_current_blog();
         PowerStats::$options = get_option('power_stats_options', array());
     }
