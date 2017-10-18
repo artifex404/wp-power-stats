@@ -495,7 +495,6 @@ class PowerStatsAdmin
         wp_register_style('wp-power-stats-report-grid', plugins_url('/admin/css/grid.css', dirname(__FILE__)));
         wp_register_style('wp-power-stats-report-styles', plugins_url('/admin/css/styles.css', dirname(__FILE__)));
 
-        wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js');
         wp_enqueue_script('google-charts', 'https://www.google.com/jsapi');
         wp_enqueue_script('helpers', plugins_url('/admin/js/scripts.js', dirname(__FILE__)));
 
@@ -536,7 +535,7 @@ class PowerStatsAdmin
                 continue;
 
             if (isset($_POST['options'][$option_name]))
-                PowerStats::$options[$option_name] = $_POST['options'][$option_name];
+                PowerStats::$options[$option_name] = sanitize_text_field($_POST['options'][$option_name]);
         }
 
         if (!empty(self::$faulty_fields)) {

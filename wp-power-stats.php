@@ -3,7 +3,7 @@
 Plugin Name: WP Power Stats
 Plugin URI: http://www.websivu.com/wp-power-stats/
 Description: Powerful real-time statistics of your visitors for your WordPress site.
-Version: 2.2.1
+Version: 2.2.2
 Author: Igor Buyanov
 Text Domain: power-stats
 Author URI: http://www.websivu.com
@@ -14,7 +14,7 @@ if (!empty(PowerStats::$options)) return true;
 
 class PowerStats
 {
-    public static $version = '2.2.1';
+    public static $version = '2.2.2';
     public static $options = array();
     public static $wpdb = '';
     protected static $options_hash = '';
@@ -273,7 +273,7 @@ class PowerStats
         self::$data['search_engine'] = self::get_search_engine_data();
 
         // Get search engine keywords
-        self::$data['keywords'] = (is_array(self::$data['search_engine'])) ? self::$data['search_engine']['keywords'] : "";
+        self::$data['keywords'] = (is_array(self::$data['search_engine'])) ? self::sanitize_data(self::$data['search_engine']['keywords']) : "";
 
         // Bot exclusion
         $needles = array('Googlebot','DoCoMo','YandexBot','bingbot','ia_archiver','AhrefsBot','Ezooms','GSLFbot','WBSearchBot','Twitterbot','TweetmemeBot','Twikle','PaperLiBot','Wotbox','UnwindFetchor','facebookexternalhit');
@@ -357,7 +357,6 @@ class PowerStats
                 @setcookie('power_stats_tracking_code', self::$data['id'].'.'.md5(self::$data['id'].self::$options['secret']), time() + self::$options['session_duration'], COOKIEPATH);
             }
         }
-
     }
 
     /**
@@ -365,6 +364,8 @@ class PowerStats
      */
     public static function string_to_array($option = '')
     {
+    	$option = sanitize_text_field($option);
+
         if (empty($option) || !is_string($option))
             return array();
         else
@@ -402,7 +403,7 @@ class PowerStats
     {
         if (!empty(self::$data['referer'])) {
 
-            $rows_updated = self::$wpdb->query(self::$wpdb->prepare("UPDATE ". $GLOBALS['wpdb']->prefix ."power_stats_referers SET `count` = `count` + 1 WHERE `referer` = '%s'", self::$data['referer']));
+            $rows_updated = self::$wpdb->query(self::$wpdb->prepare("UPDATE ". $GLOBALS['wpdb']->prefix ."power_stats_referers SET `count` = `count` + 1 WHERE `referer` = '%s'", esc_url_raw(self::$data['referer'])));
 
             if ($rows_updated === 0 && $rows_updated !== false) {
                 return array('referer' => self::$data['referer'], 'count' => 1);
@@ -560,10 +561,8 @@ class PowerStats
      */
     protected static function get_browser_version()
     {
-
-        $version = self::$vendors["browser"]->getVersion();
+        $version = self::sanitize_data(self::$vendors["browser"]->getVersion());
         return (empty($version) || $version == 'unknown') ? '' : $version;
-
     }
 
     /**
@@ -597,12 +596,21 @@ class PowerStats
     }
 
 	/**
+	 * Sanitize input data. Remove SQL injection and tags.
+	 * @param $data
+	 * @return array|string
+	 */
+    protected static function sanitize_data($data) {
+    	return esc_sql( strip_tags( $data ));
+    }
+
+	/**
 	 * Parse search engine data from the referer
 	 * @return array|false
 	 */
     protected static function get_search_engine_data() {
 
-        return self::parse_search_engine(self::$data['referer']);
+        return self::sanitize_data(self::parse_search_engine(self::$data['referer']));
     }
 
     /**
@@ -657,7 +665,7 @@ class PowerStats
             preg_match("/([^,;]*)/", $_SERVER["HTTP_ACCEPT_LANGUAGE"], $array_languages);
 
             // Fix some codes, the correct syntax is with minus (-) not underscore (_)
-            return str_replace( "_", "-", strtolower( $array_languages[0] ) );
+            return self::sanitize_data(str_replace("_", "-", strtolower( $array_languages[0])));
         }
         return '';  // Unknown language
     }
@@ -666,7 +674,7 @@ class PowerStats
      * @return mixed|string
      */
     protected static function get_referer() {
-        return (!empty(self::$data_js['referer'])) ? self::$data_js['referer'] : self::$data['referer'] = $_SERVER['HTTP_REFERER'];
+        return (!empty(self::$data_js['referer'])) ? self::sanitize_data(self::$data_js['referer']) : "";
     }
 
     /**
@@ -680,7 +688,7 @@ class PowerStats
      * Get the username of currently logged in user
      */
     protected static function get_user() {
-        return (isset($GLOBALS['current_user']->data->user_login)) ? $GLOBALS['current_user']->data->user_login : "";
+        return (isset($GLOBALS['current_user']->data->user_login)) ? self::sanitize_data($GLOBALS['current_user']->data->user_login) : "";
     }
 
 	/**

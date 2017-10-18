@@ -3,8 +3,8 @@ Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
-Tested up to: 4.7
-Stable tag: 2.2.1
+Tested up to: 4.8
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,8 @@ This lightweight plugin is carefully integrated in WordPress, which makes it fas
 [View sample screenshots](http://wordpress.org/plugins/wp-power-stats/screenshots/)
 
 Claim back your privacy: no third party services, all statistics are private on your hosting and are accessible only by you.
+
+Charting is provided by Google Chart library, which does not collect any information.
 
 Statistics features:
 
@@ -65,13 +67,9 @@ If that does not help, try disabling other installed plugins, to exclude the pos
 
 They are located under 'Statistics' section in the 'Settings' section.
 
-= When I test the plugin, the pageview number increments by 2, is it a bug? =
+= When I test the plugin, the page view number increments by 2, is it a bug? =
 
 If you test the plugin by loading the blog, make sure that you have the setting 'Administration Exclusion' under the 'Exclusions' tab set to 'yes'. One hit is formed from the blog view, the other one from the administration panel hit if the setting is set to 'no'.
-
-= Why the sudden drop of visitors number when I upgraded to version 2.0?
-
-The version 2.0 uses a completely new method to detect only real human visitors.
 
 == Screenshots ==
 
@@ -80,6 +78,9 @@ The version 2.0 uses a completely new method to detect only real human visitors.
 2. Settings page.
 
 == Changelog ==
+
+= 2.2.2 =
+* Improves security by preventing possible XSS, CSRF attack
 
 = 2.2.1 =
 * Fixes traffic origin bug

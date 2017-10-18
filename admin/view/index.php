@@ -368,7 +368,7 @@ $country_data = $wpdb->get_results("SELECT `country` AS `name`, COUNT(`id`) AS `
                             var geomap = new google.visualization.GeoChart(container);
                             geomap.draw(data, options);
 
-                        };
+                        }
 
                     </script><div id="map_canvas" style=" height: 405px; width: 100%; text-align: center; margin: auto;"></div>
 
@@ -390,7 +390,7 @@ $country_data = $wpdb->get_results("SELECT `country` AS `name`, COUNT(`id`) AS `
                         <tbody>
 
                         <?php $i=1; foreach ($top_posts as $post): ?>
-                            <tr><td class="order"><?php echo $i ?>.</td><td class="link"><a href="<?php echo get_permalink($post['post_id']) ?>"><?php echo $post['title'] ?></a></td></tr>
+                            <tr><td class="order"><?php echo $i ?>.</td><td class="link"><a href="<?php echo get_permalink($post['post_id']) ?>"><?php echo esc_html($post['title']) ?></a></td></tr>
                             <?php $i++; endforeach; ?>
 
                         </tbody>
@@ -415,7 +415,7 @@ $country_data = $wpdb->get_results("SELECT `country` AS `name`, COUNT(`id`) AS `
                             <table>
                                 <tbody>
                                 <?php $i=1; foreach ($top_links as $link): ?>
-                                    <tr><td class="order"><?php echo $i ?>.</td><td class="link"><a href="<?php echo $link['referer'] ?>" target="_blank"><?php echo $link['referer'] ?></a></td></tr>
+                                    <tr><td class="order"><?php echo $i ?>.</td><td class="link"><a href="<?php echo esc_url($link['referer']) ?>" target="_blank"><?php echo esc_url($link['referer']) ?></a></td></tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
@@ -436,7 +436,7 @@ $country_data = $wpdb->get_results("SELECT `country` AS `name`, COUNT(`id`) AS `
                             <table>
                                 <tbody>
                                 <?php $i=1; foreach ($top_searches as $search): ?>
-                                    <tr><td class="order"><?php echo $i ?>.</td><td class="link"><?php echo $search['terms'] ?></td></tr>
+                                    <tr><td class="order"><?php echo $i ?>.</td><td class="link"><?php echo esc_html($search['terms']) ?></td></tr>
                                     <?php $i++; endforeach; ?>
                                 </tbody>
                             </table>
