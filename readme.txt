@@ -3,8 +3,8 @@ Contributors: artifex404
 Donate link: http://www.websivu.com/wp-power-stats/
 Tags: statistics, stats, visit, visits, visitor, visitors, charts, analytics, tracker
 Requires at least: 3.3
-Tested up to: 4.8
-Stable tag: 2.2.2
+Tested up to: 4.9
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +78,11 @@ If you test the plugin by loading the blog, make sure that you have the setting 
 2. Settings page.
 
 == Changelog ==
+
+= 2.2.3 =
+* Fix PHP notices
+* Improve PHP compatibility with the geo location tracking
+* Tested with the most recent WordPress version
 
 = 2.2.2 =
 * Improves security by preventing possible XSS, CSRF attack
