@@ -1,5 +1,19 @@
 <?php
 
+function tabgeo_bs($data_array, $ip, $step){
+	$start = 0;
+	$end   = count($data_array) - 1;
+	$unpack_prev = "";
+	while (true) {
+		$mid    = floor(($start + $end) / 2);
+		$unpack = $step ? unpack('Noffset/Cip/Ccc_id', "\x00$data_array[$mid]") : unpack('Cip/Ccc_id', $data_array[$mid]);
+		if ($unpack['ip'] == $ip) return $unpack;
+		if ($end - $start  <   0) return $ip > $unpack['ip'] ? $unpack : $unpack_prev;
+		if ($unpack['ip']  > $ip) $end = $mid - 1; else $start = $mid + 1;
+		$unpack_prev = $unpack;
+	}
+}
+
 function tabgeo_country_v4($ip){
 
 	$fh = fopen(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tabgeo_country_v4.dat', 'rb');
@@ -20,18 +34,6 @@ function tabgeo_country_v4($ip){
 		'TR', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'UM', 'US', 'UY', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI',
 		'VN', 'VU', 'WF', 'WS', 'YE', 'YT', 'ZA', 'ZM', 'ZW', 'XA', 'YU', 'CS', 'AN', 'AA', 'EU', 'AP',
 	);
-	$tabgeo_bs = function($data_array, $ip, $step){
-		$start = 0;
-		$end   = count($data_array) - 1;
-		while (true) {
-			$mid    = floor(($start + $end) / 2);
-			$unpack = $step ? unpack('Noffset/Cip/Ccc_id', "\x00$data_array[$mid]") : unpack('Cip/Ccc_id', $data_array[$mid]);
-			if ($unpack['ip'] == $ip) return $unpack;
-			if ($end - $start  <   0) return $ip > $unpack['ip'] ? $unpack : $unpack_prev;
-			if ($unpack['ip']  > $ip) $end = $mid - 1; else $start = $mid + 1;
-			$unpack_prev = $unpack;
-		}
-	};
 
 	$ip_array = explode('.', $ip);
 	fseek($fh, ($ip_array[0] * 256 + $ip_array[1]) * 4);
@@ -40,11 +42,11 @@ function tabgeo_country_v4($ip){
 	if($index['offset'] == 16777215) return $iso[$index['length']];
 	fseek($fh, $index['offset'] * 5 + 262144);
 	$bin = fread($fh, ($index['length'] + 1) * 5);
-	$d = $tabgeo_bs(str_split($bin, 5), $ip_array[2], TRUE);
+	$d = tabgeo_bs(str_split($bin, 5), $ip_array[2], TRUE);
 	if($d['offset'] == 16777215) return $iso[$d['cc_id']];
 	if($ip_array[2] > $d['ip']) $ip_array[3] = 255;
 	fseek($fh, -(($d['offset'] + 1 + $d['cc_id']) * 2), SEEK_END);
 	$bin = fread($fh, ($d['cc_id'] + 1) * 2);
-	$d = $tabgeo_bs(str_split($bin, 2), $ip_array[3], FALSE);
+	$d = tabgeo_bs(str_split($bin, 2), $ip_array[3], FALSE);
 	return $iso[$d['cc_id']];
 }
